@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from .models import Category3, Category2, Category1, Banner
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from .permissions import FollowerPermissionMixin
 
-
-class MainListView(generic.View):
+class MainListView(generic.ListView):
     model = Category1
     template_name = 'adverts/index.html'
 
@@ -11,10 +12,7 @@ class MainListView(generic.View):
         return Category1.objects.all()
 
 
-def index(request):
-    return render(request, 'adverts/index.html', {'categories': Category1.objects.all()})
+class CategoryDetailView( generic.DetailView):
+    model = Category2
+    template_name = 'adverts/detail.html'
 
-def detail(request, pk):
-    category = get_object_or_404(Category1, pk=pk)
-    print(category.category2)
-    return render(request, 'adverts/detail.html', {'category': category})
