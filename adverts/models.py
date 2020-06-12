@@ -35,7 +35,7 @@ class Category2(models.Model):
 
 class Category3(models.Model):
     """Категория 3"""
-    parent_category = models.ForeignKey(Category1, on_delete=models.CASCADE, related_name='category3')
+    parent_category = models.ForeignKey(Category2, on_delete=models.CASCADE, related_name='category3')
     name = models.CharField("Категория 3", max_length=150)
     description = models.TextField("Описание")
     members = models.ManyToManyField(User, related_name='members3', blank=True)

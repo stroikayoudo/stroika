@@ -8,3 +8,4 @@ class FollowerPermissionMixin:
         return super().dispatch(request, *args, **kwargs)
 
     def has_permissions(self):
+        return self.request.user.id in self.get_object().members.all()

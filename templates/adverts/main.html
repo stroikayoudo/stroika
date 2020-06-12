@@ -1,0 +1,55 @@
+{% extends "adverts/base.html" %}
+{% load static %}
+{% block content %}
+
+
+  <main role="main">
+
+    <div class="album py-5 bg-light">
+      <div class="container">
+        <div class="row">
+
+
+
+
+            {% for category1 in category1_list %}
+          <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+              <div class="card-body">
+                  <h2>{{course.title}}</h2>
+                <p class="card-text">{{category1.description}}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                      <a href="{% url 'adverts:detail' category1.id %}"><button type="button" class="btn btn-sm btn-outline-secondary">View</button></a>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                  </div>
+                  <small class="text-muted">5000 myn</small>
+                </div>
+              </div>
+            </div>
+          </div>
+            {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <section class="jumbotron text-center">
+      <div class="container">
+        <h1 class="jumbotron-heading">BUL SENIN MUMKINDIGIN</h1>
+        <p class="lead text-muted">BIR BASKAN, 10 zhyl profit</p>
+          {% if current_user.is_authenticated %}
+            <p>
+                <a href="/mycourses" class="btn btn-primary my-2">Menin kurstarym</a>
+            </p>
+          {% else %}
+            <p>
+                <a href="/register" class="btn btn-primary my-2">TIRKILEU</a>
+                <a href="/login" class="btn btn-secondary my-2">KIRU</a>
+             </p>
+          {% endif %}
+      </div>
+    </section>
+  </main>
+
+
+{% endblock %}
