@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h1>Articles</h1>
+<ul>
+{% for category1 in categories %}
+    <a href="{% url 'adverts:detail' category1.id %}">{{ category1.name }}{{ category1.id }}</a>
+
+{% empty %}
+    <li>No articles yet.</li>
+{% endfor %}
+</ul>
+</body>
+</html>
