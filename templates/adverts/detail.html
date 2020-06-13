@@ -7,11 +7,10 @@
 <body>
 {{category1.name}}
 {% for category2 in category1.category2.all %}
-    <a href="{% url 'adverts:detail' category2.id %}">{{ category2.name }}{{ category2.id }}</a>
+    <p><a href="{% url 'adverts:detail' category2.id %}">{{ category2.name }}</a></p>
 
 {% empty %}
     <li>No detail</li>
-    hellp
 {% endfor %}
 </body>
 </html>

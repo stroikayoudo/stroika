@@ -8,7 +8,7 @@
 <h1>Articles</h1>
 <ul>
 {% for category1 in category1_list %}
-    <p>{{ category1.id }}<a href="{% url 'adverts:detail' category1.id %}"> {{ category1.name }}</a></p>
+    <p>{{ category1.id }}<a href="{% url 'adverts:detail' category2.id %}"> {{ category1.name }}</a></p>
 
 {% empty %}
     <li>No articles yet.</li>
