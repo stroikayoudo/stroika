@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  {{banner.title}}
+  <p><img src="{{ banner.image.url }}" alt="" width="200" height="200"></p>
+  
+
+
+{% endblock %}

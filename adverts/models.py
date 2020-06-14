@@ -51,12 +51,13 @@ class Category3(models.Model):
 
 class Banner(models.Model):
     """Объявление"""
+    category3 = models.ForeignKey(Category3, on_delete=models.CASCADE, related_name='banner')
     title = models.CharField("Наименование", max_length=150)
     description = models.TextField('Описание')
     pub_time = models.DateTimeField('Дата публикации')
     price = models.IntegerField('Цена')
     amount = models.IntegerField('Количество')
-    image = models.ImageField('Изображение')
+    image = models.ImageField('Изображение', upload_to='adverts/')
     addition = models.TextField('Дополнительная информация')
 
     def __str__(self):

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  {{category3.name}}
+  {% for banner in category3.banner.all %}
+      <p><img src="{{ banner.image.url }}" alt="" width="200" height="200"></p>
+      <p><a href="{% url 'adverts:banner_detail' category3.parent_category.parent_category.id category3.parent_category.id category3.id banner.id%}">{{ banner.title }}</a></p>
+
+  {% empty %}
+      <li>No detail</li>
+  {% endfor %}
+
+
+{% endblock %}

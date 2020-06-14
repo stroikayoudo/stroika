@@ -1,4 +1,4 @@
-{% extends "adverts/base.html" %}
+{% extends "base.html" %}
 {% load static %}
 {% block content %}
 
@@ -34,16 +34,6 @@
       <div class="container">
         <h1 class="jumbotron-heading">BUL SENIN MUMKINDIGIN</h1>
         <p class="lead text-muted">BIR BASKAN, 10 zhyl profit</p>
-          {% if current_user.is_authenticated %}
-            <p>
-                <a href="/mycourses" class="btn btn-primary my-2">Menin kurstarym</a>
-            </p>
-          {% else %}
-            <p>
-                <a href="/register" class="btn btn-primary my-2">TIRKILEU</a>
-                <a href="/login" class="btn btn-secondary my-2">KIRU</a>
-             </p>
-          {% endif %}
       </div>
     </section>
   </main>
