@@ -20,4 +20,14 @@ class Category1DetailView(generic.DetailView):
 
 class Category2DetailView(generic.DetailView):
     model = Category2
-    template_name = 'adverts/detail.html'
+    template_name = 'adverts/detail2.html'
+
+
+class Category3DetailView(generic.DetailView):
+    model = Category3
+    template_name = 'adverts/detail3.html'
+
+
+class BannerDetailView(generic.DetailView):
+    model = Banner
+    template_name = 'adverts/banner.html'

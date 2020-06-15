@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  {{category2.name}}
+  {% for category3 in category2.category3.all %}
+      <p><a href="{% url 'adverts:detail3' category2.parent_category.id category2.id category3.id%}">{{ category3.name }}</a></p>
+
+  {% empty %}
+      <li>No detail</li>
+  {% endfor %}
+
+
+{% endblock %}

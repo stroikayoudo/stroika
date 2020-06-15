@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
-{{category1.name}}
-{% for category2 in category1.category2.all %}
-    <a href="{% url 'adverts:detail' category2.id %}">{{ category2.name }}{{ category2.id }}</a>
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  {{category1.name}}
+  {% for category2 in category1.category2.all %}
+      <p><a href="{% url 'adverts:detail2' category1.id category2.id %}">{{ category2.name }}</a></p>
+  
+  {% empty %}
+      <li>No detail</li>
+  {% endfor %}
 
-{% empty %}
-    <li>No detail</li>
-    hellp
-{% endfor %}
-</body>
-</html>
+
+{% endblock %}
