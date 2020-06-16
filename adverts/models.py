@@ -59,6 +59,7 @@ class Banner(models.Model):
     amount = models.IntegerField('Количество')
     image = models.ImageField('Изображение', upload_to='adverts/')
     addition = models.TextField('Дополнительная информация')
+    author = models.ForeignKey(User, related_name='mybanners')
 
     def __str__(self):
         return self.title
