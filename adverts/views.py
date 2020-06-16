@@ -35,5 +35,5 @@ class BannerDetailView(generic.DetailView):
 
 class MyOrdersListView(generic.base.View):
 
-    def get(self):
-        return render(self.request,'adverts/main.html', banners)
+    def get(self, request):
+        return render(request, 'adverts/mybanners.html')
