@@ -31,3 +31,9 @@ class Category3DetailView(generic.DetailView):
 class BannerDetailView(generic.DetailView):
     model = Banner
     template_name = 'adverts/banner.html'
+
+
+class MyOrdersListView(generic.base.View):
+
+    def get(self):
+        return render(self.request,'adverts/main.html', banners)
