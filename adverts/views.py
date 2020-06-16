@@ -37,3 +37,9 @@ class MyOrdersListView(generic.base.View):
 
     def get(self, request):
         return render(request, 'adverts/mybanners.html')
+
+
+class AddBannerView(LoginRequiredMixin, generic.base.View):
+
+    def get(self, request):
+        return render(request, 'adverts/addbanner.html')
