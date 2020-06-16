@@ -13,5 +13,7 @@ urlpatterns = [
          views.BannerDetailView.as_view(), name='banner_detail'),
     path('mybanners/',
          views.MyOrdersListView.as_view(), name='mybanners'),
+    path('addbanner/',
+         views.AddBannerView.as_view(), name='addbanner'),
 
 ]
