@@ -10,4 +10,5 @@ class AddBannerForm(forms.ModelForm):
                   'description',
                   'price',
                   'amount',
-                  'addition']
+                  'addition',
+                  'image']
