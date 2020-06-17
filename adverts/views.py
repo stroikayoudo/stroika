@@ -1,10 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from .models import Category3, Category2, Category1, Banner
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from .permissions import FollowerPermissionMixin
 from .forms import AddBannerForm
-
 
 
 class MainListView(generic.ListView):
@@ -41,24 +40,24 @@ class MyOrdersListView(generic.base.View):
         return render(request, 'adverts/mybanners.html')
 
 
-# class AddBannerView(LoginRequiredMixin, generic.base.View):
-#
-#     def get(self, request):
-#         form = AddBannerForm(request.POST or None)
-#         if form.is_valid():
-#             form.save()
-#         context = {'form': form}
-#         return render(request, 'adverts/addbanner.html', context)
-#
-#     def post(self, request):
-#         return render(request, 'adverts/addbanner.html')
-
-
 def add_banner_view(request):
     form = AddBannerForm(request.POST or None)
     if form.is_valid():
-        form.save()
-        form = AddBannerForm()
+        print(form)
+        fs = form.save(commit=False)
+        fs.author = request.user
+        fs.save()
+        return redirect('/mybanners')
 
     context = {'form': form}
     return render(request, 'adverts/addbanner.html', context)
+
+
+class BannerCreateView(LoginRequiredMixin, generic.CreateView):
+    form_class = AddBannerForm
+    template_name = 'adverts/addbanner.html'
+    success_url = '/mybanners'
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super(BannerCreateView, self).form_valid(form)

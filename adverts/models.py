@@ -58,13 +58,10 @@ class Banner(models.Model):
     pub_time = models.DateTimeField('Дата публикации', default=timezone.now())
     price = models.IntegerField('Цена')
     amount = models.IntegerField('Количество')
-    image = models.ImageField('Изображение', upload_to='adverts/')
+    image = models.ImageField('Изображение', upload_to='adverts/', null=True)
     addition = models.TextField('Дополнительная информация')
-    author = models.ForeignKey(User, related_name='mybanners', on_delete=models.CASCADE)
+    author = models.ForeignKey(User, related_name='mybanners', on_delete=models.CASCADE, null=True)
 
-    def save_model(self, request, obj, form, change):
-        obj.author = request.user
-        super().save_model(request, obj, form, change)
 
     def __str__(self):
         return self.title
