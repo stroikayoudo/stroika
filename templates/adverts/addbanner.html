@@ -3,7 +3,42 @@
 {% block content %}
 <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
-  {{form.as_p}}
+  {{ form.non_field_errors }}
+  <div class="fieldWrapper">
+      {{ form.cagoryte3.errors }}
+      <label for="{{ form.category3.id_for_label }}">Email subject:</label>
+      {{ form.cagoryte3 }}
+  </div>
+  <div class="fieldWrapper">
+      {{ form.title.errors }}
+      <label for="{{ form.title.id_for_label }}">Your message:</label>
+      {{ form.title }}
+  </div>
+  <div class="fieldWrapper">
+      {{ form.description.errors }}
+      <label for="{{ form.description.id_for_label }}">Your email address:</label>
+      {{ form.description }}
+  </div>
+  <div class="fieldWrapper">
+      {{ form.price.errors }}
+      <label for="{{ form.price.id_for_label }}">CC yourself?</label>
+      {{ form.price }}
+  </div>
+  <div class="fieldWrapper">
+    {{ form.amount.errors }}
+    <label for="{{ for.amount.id_for_label }}">Your message:</label>
+    {{ form.amount }}
+  </div>
+  <div class="fieldWrapper">
+    {{ form.addition.errors }}
+    <label for="{{ form.addition.id_for_label }}">Your email address:</label>
+    {{ form.addition }}
+  </div>
+  <div class="fieldWrapper">
+    {{ form.image.errors }}
+    <label for="{{ form.image.id_for_label }}">CC yourself?</label>
+    {{ form.image }}
+  </div>
   <input type="submit" value="Save">
 
 </form>
