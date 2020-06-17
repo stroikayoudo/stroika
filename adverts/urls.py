@@ -1,7 +1,6 @@
 from django.urls import path
 
 from . import views
-
 app_name = 'adverts'
 urlpatterns = [
     path('', views.MainListView.as_view(), name='all'),
@@ -13,7 +12,6 @@ urlpatterns = [
          views.BannerDetailView.as_view(), name='banner_detail'),
     path('mybanners/',
          views.MyOrdersListView.as_view(), name='mybanners'),
-    path('addbanner/',
-         views.AddBannerView.as_view(), name='addbanner'),
+    path('addbanner/', views.add_banner_view, name='addbanner'),
 
 ]

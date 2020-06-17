@@ -3,6 +3,8 @@ from django.views import generic
 from .models import Category3, Category2, Category1, Banner
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from .permissions import FollowerPermissionMixin
+from .forms import AddBannerForm
+
 
 
 class MainListView(generic.ListView):
@@ -39,7 +41,24 @@ class MyOrdersListView(generic.base.View):
         return render(request, 'adverts/mybanners.html')
 
 
-class AddBannerView(LoginRequiredMixin, generic.base.View):
+# class AddBannerView(LoginRequiredMixin, generic.base.View):
+#
+#     def get(self, request):
+#         form = AddBannerForm(request.POST or None)
+#         if form.is_valid():
+#             form.save()
+#         context = {'form': form}
+#         return render(request, 'adverts/addbanner.html', context)
+#
+#     def post(self, request):
+#         return render(request, 'adverts/addbanner.html')
 
-    def get(self, request):
-        return render(request, 'adverts/addbanner.html')
+
+def add_banner_view(request):
+    form = AddBannerForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        form = AddBannerForm()
+
+    context = {'form': form}
+    return render(request, 'adverts/addbanner.html', context)

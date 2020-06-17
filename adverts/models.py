@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 
 class Category1(models.Model):
@@ -54,12 +55,16 @@ class Banner(models.Model):
     category3 = models.ForeignKey(Category3, on_delete=models.CASCADE, related_name='banner')
     title = models.CharField("Наименование", max_length=150)
     description = models.TextField('Описание')
-    pub_time = models.DateTimeField('Дата публикации')
+    pub_time = models.DateTimeField('Дата публикации', default=timezone.now())
     price = models.IntegerField('Цена')
     amount = models.IntegerField('Количество')
     image = models.ImageField('Изображение', upload_to='adverts/')
     addition = models.TextField('Дополнительная информация')
     author = models.ForeignKey(User, related_name='mybanners', on_delete=models.CASCADE)
+
+    def save_model(self, request, obj, form, change):
+        obj.author = request.user
+        super().save_model(request, obj, form, change)
 
     def __str__(self):
         return self.title

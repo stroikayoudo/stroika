@@ -72,24 +72,27 @@
             <div class="row">
               <div class="col-sm-12 col-md-6">
                 <h6>About</h6>
-                <p class="text-justify">Найдите свои заказы</p>
+                <a class="text-justify">Найдите свои заказы</a>
+                <li><a href="{% url 'adverts:detail' 3 %}">Строительный материалы</a></li>
+                <ul class="footer-links">
+                </ul>
               </div>
 
               <div class="col-xs-6 col-md-3">
                 <h6>Categories</h6>
                 <ul class="footer-links">
-                  <li><a href="">Строительный материалы</a></li>
-                  <li><a href="">Водо-, газо-, теплообеспечение</a></li>
-                  <li><a href="">Отделочные материалы</a></li>
-                  <li><a href="">Вентиляционные системы</a></li>
-                  <li><a href="">Спецтехника и оборудование (аренда)</a></li>
+                  <li><a href="{% url 'adverts:detail' 3 %}">Строительный материалы</a></li>
+                  <li><a href="{% url 'adverts:detail' 4 %}">Водо-, газо-, теплообеспечение</a></li>
+                  <li><a href="{% url 'adverts:detail' 5 %}">Отделочные материалы</a></li>
+                  <li><a href="{% url 'adverts:detail' 6 %}">Вентиляционные системы</a></li>
+                  <li><a href="{% url 'adverts:detail' 7 %}">Спецтехника и оборудование (аренда)</a></li>
                 </ul>
               </div>
 
               <div class="col-xs-6 col-md-3">
                 <h6>Quick Links</h6>
                 <ul class="footer-links">
-                  <li><a href="">Создать заказ</a></li>
+                  <li><a href="{% url 'adverts:addbanner' %}">Создать заказ</a></li>
                   <li><a href="">Найти исполнителя</a></li>
                 </ul>
               </div>
