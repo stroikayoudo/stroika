@@ -3,44 +3,52 @@
 {% block content %}
 <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
-  {{ form.non_field_errors }}
-  <div class="fieldWrapper">
-      {{ form.cagoryte3.errors }}
-      <label for="{{ form.category3.id_for_label }}">Email subject:</label>
-      {{ form.cagoryte3 }}
-  </div>
-  <div class="fieldWrapper">
-      {{ form.title.errors }}
-      <label for="{{ form.title.id_for_label }}">Your message:</label>
-      {{ form.title }}
-  </div>
-  <div class="fieldWrapper">
-      {{ form.description.errors }}
-      <label for="{{ form.description.id_for_label }}">Your email address:</label>
-      {{ form.description }}
-  </div>
-  <div class="fieldWrapper">
-      {{ form.price.errors }}
-      <label for="{{ form.price.id_for_label }}">CC yourself?</label>
-      {{ form.price }}
-  </div>
-  <div class="fieldWrapper">
-    {{ form.amount.errors }}
-    <label for="{{ for.amount.id_for_label }}">Your message:</label>
-    {{ form.amount }}
-  </div>
-  <div class="fieldWrapper">
-    {{ form.addition.errors }}
-    <label for="{{ form.addition.id_for_label }}">Your email address:</label>
-    {{ form.addition }}
-  </div>
-  <div class="fieldWrapper">
-    {{ form.image.errors }}
-    <label for="{{ form.image.id_for_label }}">CC yourself?</label>
-    {{ form.image }}
-  </div>
-  <input type="submit" value="Save">
 
+  <div class="form-group">
+     
+      <label for="{{ form.category3.id_for_label }}">Ваша категория</label>
+      {{ form.category3 }}
+  </div>
+  <div class="form-group">
+    
+      <label for="{{ form.title.id_for_label }}">Название:</label>
+      <input type="text" class="form-control" placeholder="Ваш текст" {{ form.title }}
+      
+  </div>
+  <div class="form-group">
+     
+      <label for="{{ form.description.id_for_label }}">Описание товара:</label>
+      <input type="text" class="form-control"  placeholder="Ваше описание" {{ form.description }}
+      
+  </div>
+  <div class="form-group">
+ 
+      <label for="{{ form.price.id_for_label }}">Стоимость</label>
+      <input class="form-control" type="number" placeholder="Стоимость" {{ form.price }}
+      
+      
+  </div>
+  <div class="form-group">
+   
+    <label for="{{ for.amount.id_for_label }}">Количество</label>
+    <input class="form-control" type="number" placeholder="Кол-во" {{ form.amount }}
+      
+
+  </div>
+  <div class="form-group">
+  
+    <label for="{{ form.addition.id_for_label }}">Дополнительная информация</label>
+    <input class="form-control" type="text" placeholder=" " {{ form.addition }}
+    
+  </div>
+  <div class="form-group">
+  
+    <label for="{{ form.image.id_for_label }}">Вставьте изображение</label>
+    <input type="file" class="form-control-file" id="exampleFormControlFile1" {{ form.image }}
+  </div>
+  <div class="row justify-content-center">
+    <input  type="submit" value="Разместить объявление">
+  </div>
 </form>
 
 
