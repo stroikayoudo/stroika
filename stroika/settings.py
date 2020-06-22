@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'allauth',
     'allauth.account',
+    'walletone.apps.DjangoWalletoneConfig',
 ]
 
 MIDDLEWARE = [
@@ -136,3 +137,26 @@ ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_REDIRECT_URL = "/"
 CKEDITOR_UPLOAD_PATH = "uploads/"
 SITE_ID = 1
+
+# Online store ID (account number)
+# received at registration
+DJANGO_W1_MERCHANT_ID = '151925246675'
+
+# EDS creation method
+DJANGO_W1_SIGN_METHOD = 'md5'
+
+# Secret key from your W1 account
+DJANGO_W1_SECRET_KEY = 'sekret key'
+
+# Online store web-pages addresses (URL),
+# where buyer will be directed after successful
+# or unsuccessful payment.
+DJANGO_W1_SUCCESS_URL = 'https://127.0.0.1:8000/payment/success/'
+DJANGO_W1_FAIL_URL = 'https://127.0.0.1:8000/payment/fail/'
+
+# Currency ID (ISO 4217)
+# 643 — Russian Rubles
+# 840 — US Dollar
+# 978 — Euro
+# ...
+DJANGO_W1_CURRENCY_DEFAULT = '398'
