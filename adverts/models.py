@@ -62,7 +62,6 @@ class Banner(models.Model):
     addition = models.TextField('Дополнительная информация')
     author = models.ForeignKey(User, related_name='mybanners', on_delete=models.CASCADE, null=True)
 
-
     def __str__(self):
         return self.title
 

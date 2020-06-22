@@ -4,6 +4,7 @@ from .models import Category3, Category2, Category1, Banner
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from .permissions import FollowerPermissionMixin
 from .forms import AddBannerForm
+from walletone.models import WalletOneSuccessPayment
 
 
 class MainListView(generic.ListView):
@@ -29,7 +30,7 @@ class Category3DetailView(generic.DetailView):
     template_name = 'adverts/detail3.html'
 
 
-class BannerDetailView(generic.DetailView):
+class BannerDetailView(FollowerPermissionMixin, generic.DetailView):
     model = Banner
     template_name = 'adverts/banner.html'
 
@@ -38,19 +39,6 @@ class MyOrdersListView(generic.base.View):
 
     def get(self, request):
         return render(request, 'adverts/mybanners.html')
-
-
-def add_banner_view(request):
-    form = AddBannerForm(request.POST or None)
-    if form.is_valid():
-        print(form)
-        fs = form.save(commit=False)
-        fs.author = request.user
-        fs.save()
-        return redirect('/mybanners')
-
-    context = {'form': form}
-    return render(request, 'adverts/addbanner.html', context)
 
 
 class BannerCreateView(LoginRequiredMixin, generic.CreateView):
