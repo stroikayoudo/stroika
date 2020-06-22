@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+<div class="d-flex justify-content-center"><h1>{{category1.name}}</h1></div>
  <div class="album py-5 bg-light">
       <div class="container">
         <div class="row">
@@ -9,7 +10,7 @@
           <div class="col-md-12">
             <div class="list-group mb-12 shadow-sm">
               <h2>{{course.title}}</h2>
-                <div class="d-flex justify-content-between align-items-center">
+                <div class="d-inline-flex justify-content-between align-items-center">
                   <a class="list-group-item list-group-item-action" href="{% url 'adverts:detail2' category1.id category2.id %}" style="text-decoration:none; color: #000000;">{{ category2.name }}</a>
                 </div>
               </div>

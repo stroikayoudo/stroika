@@ -55,7 +55,7 @@ class Banner(models.Model):
     category3 = models.ForeignKey(Category3, on_delete=models.CASCADE, related_name='banner')
     title = models.CharField("Наименование", max_length=150)
     description = models.TextField('Описание')
-    pub_time = models.DateTimeField('Дата публикации', default=timezone.now())
+    pub_time = models.DateTimeField('Дата публикации', default=timezone.now)
     price = models.IntegerField('Цена')
     amount = models.IntegerField('Количество')
     image = models.ImageField('Изображение', upload_to='adverts/', null=True)

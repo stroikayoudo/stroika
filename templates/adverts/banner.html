@@ -10,20 +10,45 @@
 </html>{% extends "base.html" %}
 {% load static %}
 {% block content %}
-<div class="jumbotron bord">
-  <div class="form-group">
-    <div>
-      <h2>Наименование товара:   {{banner.title}}</h2>
+<div class="jumbotron">
+  <div class="col-md-12">
+    <div class="form-group">
+      <div class="row d-flex justify-content-center">
+        <h2>Наименование товара:   {{banner.title}}</h2> 
+      </div>   
     </div>
-    
+    <div class="form-group">
+      <div class="row d-flex justify-content-center">
+        <p><img src="{{ banner.image.url }}" class="img-fluid" alt=""></p>
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <div class="row">
+        Описание:    {{banner.description}}
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        Автор:    {{banner.author}}
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        Стоимость:    {{banner.price}} Тенге
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        Кол-во:    {{banner.amount}}
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        Дополнительная информация:    {{banner.addition}}
+      </div>
+    </div>
   </div>
-  <p><img src="{{ banner.image.url }}" class="img-fluid" alt=""></p>
-  <br>
-  <h2>{{banner.description}}</h2>
-  <h2>{{banner.author}}</h2>
-  <h1>{{banner.price}}</h1>
-  <br><br>
-  <h2>{{banner.amount}}</h2>
 </div>  
 
 
