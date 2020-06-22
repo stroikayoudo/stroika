@@ -7,8 +7,8 @@
         <div class="row">
 
         {% for category2 in category1.category2.all %}
-          <div class="col-md-12">
-            <div class="list-group mb-12 shadow-sm">
+          <div class="col-md-4">
+            <div class="list-group mb-4 shadow-sm">
               <h2>{{course.title}}</h2>
                 <div class="d-inline-flex align-items-center">
                   <a class="list-group-item list-group-item-action" href="{% url 'adverts:detail2' category1.id category2.id %}" style="text-decoration:none; color: #000000;">{{ category2.name }}</a>
