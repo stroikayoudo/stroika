@@ -68,3 +68,17 @@ class Banner(models.Model):
     class Meta:
         verbose_name = "Объявление"
         verbose_name_plural = "Объявления"
+
+
+class Answer(models.Model):
+    banner = models.ForeignKey(Banner, on_delete=models.CASCADE, related_name='answers')
+    author = models.ForeignKey(User, related_name='myanswers', on_delete=models.CASCADE, null=True)
+    pub_time = models.DateTimeField('Дата публикации', default=timezone.now)
+    text = models.TextField('Описание')
+
+    def __str__(self):
+        return self.author.username
+
+    class Meta:
+        verbose_name = "Отклик"
+        verbose_name_plural = "Отклик"

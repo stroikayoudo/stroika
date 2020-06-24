@@ -14,8 +14,8 @@
   <div class="col-md-12">
     <div class="form-group">
       <div class="row d-flex justify-content-center">
-        <h2>Наименование товара:   {{banner.title}}</h2> 
-      </div>   
+        <h2>Наименование товара: {{banner.title}}</h2>
+      </div>
     </div>
     <div class="form-group">
       <div class="row d-flex justify-content-center">
@@ -25,31 +25,51 @@
     <br>
     <div class="form-group">
       <div class="row">
-        Описание:    {{banner.description}}
+        Описание: {{banner.description}}
       </div>
     </div>
     <div class="form-group">
       <div class="row">
-        Автор:    {{banner.author}}
+        Автор: {{banner.author}}
       </div>
     </div>
     <div class="form-group">
       <div class="row">
-        Стоимость:    {{banner.price}} Тенге
+        Стоимость: {{banner.price}} Тенге
       </div>
     </div>
     <div class="form-group">
       <div class="row">
-        Кол-во:    {{banner.amount}}
+        Кол-во: {{banner.amount}}
       </div>
     </div>
     <div class="form-group">
       <div class="row">
-        Дополнительная информация:    {{banner.addition}}
+        Дополнительная информация: {{banner.addition}}
       </div>
     </div>
   </div>
-</div>  
+
+
+  {% for answer in banner.answers.all %}
+  <p>{{answer}}</p>
+  <p>{{answer.pub_time}}</p>
+  <p>{{answer.text}}</p>
+
+  {% empty %}
+  <li>No Answers</li>
+  {% endfor %}
+
+  <form action="{url 'adverts:leave_answer' banner.id}"
+        method="POST">
+    {% csrf_token %}
+    <p>Author: {{current_user.username}}</p>
+    <textarea name="text" id="" cols="30" rows="10"></textarea>
+    <br>
+    <button type="submit"> Leave answer</button>
+
+  </form>
+</div>
 
 
 {% endblock %}

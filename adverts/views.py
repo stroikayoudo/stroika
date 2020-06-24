@@ -4,6 +4,9 @@ from .models import Category3, Category2, Category1, Banner
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from .permissions import FollowerPermissionMixin
 from .forms import AddBannerForm
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.core.mail import send_mail, send_mass_mail
 from walletone.models import WalletOneSuccessPayment
 
 
@@ -47,5 +50,21 @@ class BannerCreateView(LoginRequiredMixin, generic.CreateView):
     success_url = '/mybanners'
 
     def form_valid(self, form):
+        send_mail('Новое обьявление',
+                  'Посмотрите новое обьявление',
+                  'artemovanvar@gmail.com',
+                  ['artemovanvar2@gmail.com'],
+                  fail_silently=False)
         form.instance.author = self.request.user
         return super(BannerCreateView, self).form_valid(form)
+
+
+def leave_answer(request, banner_id):
+    banner = get_object_or_404(Banner, pk=banner_id)
+    print(request.user, request.POST['text'])
+    banner.answers_set.create(author=request.user, text=request.POST['text'])
+    return HttpResponseRedirect(reverse('adverts:banner_detail',
+                                        args=(banner.category3.parent_category.parent_category.id,
+                                              banner.category3.parent_category.id,
+                                              banner.category3.id,
+                                              banner.id)))

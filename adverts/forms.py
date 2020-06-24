@@ -1,5 +1,5 @@
 from django import forms
-from .models import Banner
+from .models import Banner, Answer
 
 
 class AddBannerForm(forms.ModelForm):
@@ -12,3 +12,5 @@ class AddBannerForm(forms.ModelForm):
                   'amount',
                   'addition',
                   'image']
+
+
