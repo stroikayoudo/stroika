@@ -60,7 +60,7 @@
   <li>No Answers</li>
   {% endfor %}
 
-  <form action="{url 'adverts:leave_answer' banner.id}"
+  <form action="{% url 'adverts:leave_answer' banner.id %}"
         method="POST">
     {% csrf_token %}
     <p>Author: {{user.username}}</p>

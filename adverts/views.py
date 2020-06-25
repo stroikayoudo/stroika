@@ -56,8 +56,14 @@ class BannerCreateView(LoginRequiredMixin, generic.CreateView):
 
 def leave_answer(request, banner_id):
     banner = get_object_or_404(Banner, pk=banner_id)
-    print(request.user, request.POST['text'])
-    banner.answers_set.create(author=request.user, text=request.POST['text'])
+
+    print(banner.answers, '\n\n\n\n')
+    banner.answers.create(author=request.user, text=request.POST['text'])
+    send_mail(
+        'У вас новый ответ',
+        f'Кто то оставил ответ на ваше обьявление {banner.title}',
+        'artemovanvar@gmail.com',
+        [banner.author.email])
     return HttpResponseRedirect(reverse('adverts:banner_detail',
                                         args=(banner.category3.parent_category.parent_category.id,
                                               banner.category3.parent_category.id,
