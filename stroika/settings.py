@@ -158,5 +158,21 @@ DJANGO_W1_FAIL_URL = 'https://127.0.0.1:8000/payment/fail/'
 # 643 — Russian Rubles
 # 840 — US Dollar
 # 978 — Euro
-# ...
 DJANGO_W1_CURRENCY_DEFAULT = '398'
+if not DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.smpt.EmailBackend'
+    EMAIL_HOST_USER = 'artemovanvar@gmail.com'
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    EMAIL_HOST_PASSWORD = '4875Princeton2020'
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST_USER = 'artemovanvar@gmail.com'
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    EMAIL_HOST_PASSWORD = '4875Princeton2020'
+    # EMAIL_BACKEND = (
+    #     'django.core.mail.backends.console.EmailBackend'
+    # )

@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
   {{user}}
-{{user.mybanners.all}}
+
   {% for banner in user.mybanners.all %}
 
       <p><img src="{{ banner.image.url }}" alt="" width="200" height="200"></p>
