@@ -13,5 +13,6 @@ urlpatterns = [
          views.BannerDetailView.as_view(), name='banner_detail'),
     path('mybanners/', views.MyOrdersListView.as_view(), name='mybanners'),
     path('addbanner/', views.BannerCreateView.as_view(), name='addbanner'),
+    path('leave_answer/<int:banner_id>', views.leave_answer, name='leave_answer'),
 
 ]
