@@ -48,6 +48,7 @@
               </li>
             </ul>
             {% if user.is_authenticated %}
+                {{user.email}}
                 <a href="{% url 'adverts:mybanners' %}" class="btn btn-outline-primary my-2"> Мои заказы</a>
                 <a href="{% url 'account_logout' %}"    class="btn btn-primary my-2">Выход</a>
             {% else %}

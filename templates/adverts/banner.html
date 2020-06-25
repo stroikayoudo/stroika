@@ -63,10 +63,15 @@
   <form action="{url 'adverts:leave_answer' banner.id}"
         method="POST">
     {% csrf_token %}
-    <p>Author: {{current_user.username}}</p>
-    <textarea name="text" id="" cols="30" rows="10"></textarea>
+    <p>Author: {{user.username}}</p>
+    <div class="row">
+          <textarea name="text" id="" cols="30" rows="10"></textarea>
+    </div>
     <br>
-    <button type="submit"> Leave answer</button>
+    <div class="row">
+      <button type="submit" class="btn btn-success">Оставить комментарий</button>
+    </div>
+
 
   </form>
 </div>

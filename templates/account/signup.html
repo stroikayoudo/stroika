@@ -5,17 +5,51 @@
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block content %}
-<h1>{% trans "Sign Up" %}</h1>
+<h1>{% trans "Регистрация" %}</h1>
 
-<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+
 
 <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
   {% csrf_token %}
-  {{ form.as_p }}
+  <div class="form-group">
+
+      <label for="{{ form.category3.id_for_label }}">Придумайте логин</label>
+      <input type="text" class="form-control" placeholder="Логин"  required {{ form.username }}
+  </div>
+  <div class="form-group">
+
+      <label for="{{ form.email.id_for_label }}">Введите ваш e-mail</label>
+      <input type="text" class="form-control" placeholder="example@example.com" required {{ form.email }}
+
+  </div>
+  <div class="form-group">
+
+      <label for="{{ form.password1.id_for_label }}">Придумайте пароль</label>
+      <input type="password" class="form-control" placeholder="Пароль" required {{ form.password1 }}
+
+  </div>
+  <div class="form-group">
+
+      <label for="{{ form.password2.id_for_label }}">Повторите пароль</label>
+      <input type="password" class="form-control" placeholder="Повторите пароль" required {{ form.password2 }}
+
+  </div>
+
+
+  {% if form.subject.errors %}
+    <ol>
+    {% for error in form.subject.errors %}
+        <li><strong>{{ error|escape }}</strong></li>
+    {% endfor %}
+    </ol>
+  {% endif %}
   {% if redirect_field_value %}
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
-  <button type="submit">{% trans "Sign Up" %} &raquo;</button>
+  <button type="submit" class="btn btn-success">{% trans "Зарегестрироваться" %} &raquo;</button>
 </form>
+<br>
+<p>{% blocktrans %} У вас уже есть аккаунт?
+  <a href="{{ login_url }}" class="btn btn-warning">Войти</a>{% endblocktrans %}</p>
 
 {% endblock %}

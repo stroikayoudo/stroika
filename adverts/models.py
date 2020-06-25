@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.core.mail import send_mass_mail
 
 
 class Category1(models.Model):
@@ -68,6 +69,17 @@ class Banner(models.Model):
     class Meta:
         verbose_name = "Объявление"
         verbose_name_plural = "Объявления"
+
+    def save(self, *args, **kwargs):
+        datatuple = (
+            ('Новое обьявление',
+             'Посмотрите новое обьявление',
+             'artemovanvar@gmail.com', [i.email]) for i in set([*self.category3.members.all(),
+                                                                *self.category3.parent_category.members.all(),
+                                                                *self.category3.parent_category.parent_category.members.all()]))
+        send_mass_mail(datatuple)
+
+        super().save(*args, **kwargs)
 
 
 class Answer(models.Model):

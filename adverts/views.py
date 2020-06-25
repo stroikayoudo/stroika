@@ -50,11 +50,6 @@ class BannerCreateView(LoginRequiredMixin, generic.CreateView):
     success_url = '/mybanners'
 
     def form_valid(self, form):
-        send_mail('Новое обьявление',
-                  'Посмотрите новое обьявление',
-                  'artemovanvar@gmail.com',
-                  ['artemovanvar2@gmail.com'],
-                  fail_silently=False)
         form.instance.author = self.request.user
         return super(BannerCreateView, self).form_valid(form)
 
