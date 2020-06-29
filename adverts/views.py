@@ -56,8 +56,6 @@ class BannerCreateView(LoginRequiredMixin, generic.CreateView):
 
 def leave_answer(request, banner_id):
     banner = get_object_or_404(Banner, pk=banner_id)
-
-    print(banner.answers, '\n\n\n\n')
     banner.answers.create(author=request.user, text=request.POST['text'])
     send_mail(
         'У вас новый ответ',
