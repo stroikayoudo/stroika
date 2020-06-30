@@ -52,10 +52,11 @@
 
 
   {% for answer in banner.answers.all %}
-  <p>{{answer}}</p>
+  <hr>
+  <h2><p>{{answer}}</p></h2>
   <p>{{answer.pub_time}}</p>
   <p>{{answer.text}}</p>
-
+  <hr>
   {% empty %}
   <li>No Answers</li>
   {% endfor %}
@@ -65,7 +66,7 @@
     {% csrf_token %}
     <p>Author: {{user.username}}</p>
     <div class="row">
-          <textarea name="text" id="" cols="30" rows="10"></textarea>
+          <textarea name="text" id="" cols="180" rows="10"></textarea>
     </div>
     <br>
     <div class="row">
