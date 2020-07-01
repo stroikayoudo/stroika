@@ -49,6 +49,16 @@ class BannerCreateView(LoginRequiredMixin, generic.CreateView):
     template_name = 'adverts/addbanner.html'
     success_url = '/mybanners'
 
+    def get(self, request, *args, **kwargs):
+        self.object = None
+        if 'form' not in kwargs:
+            kwargs['form'] = self.get_form()
+        if kwargs['pk']:
+            kwargs['form'].initial['category3'] = get_object_or_404(Category3, pk=kwargs['pk'])
+            kwargs['form'].instance.category3 = get_object_or_404(Category3, pk=kwargs['pk'])
+
+        return self.render_to_response(self.get_context_data(**kwargs))
+
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super(BannerCreateView, self).form_valid(form)

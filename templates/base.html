@@ -41,7 +41,7 @@
             <a class="navbar-brand" href="/">TEST</a>
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'adverts:addbanner' %}">Разместить задание </a>
+                <a class="nav-link" href="{% url 'adverts:addbanner' 0 %}">Разместить задание </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/">Найти исполнителя</a>
@@ -49,7 +49,7 @@
             </ul>
             {% if user.is_authenticated %}
                 {{user.email}}
-                <a href="{% url 'adverts:mybanners' %}" class="btn btn-outline-primary my-2"> Мои заказы</a>
+                <a href="{% url 'adverts:mybanners'%}" class="btn btn-outline-primary my-2"> Мои заказы</a>
                 <a href="{% url 'account_logout' %}"    class="btn btn-primary my-2">Выход</a>
             {% else %}
               <form class="form-inline my-2 my-lg-0">
@@ -93,7 +93,7 @@
               <div class="col-xs-6 col-md-3">
                 <h6>Quick Links</h6>
                 <ul class="footer-links">
-                  <li><a href="{% url 'adverts:addbanner' %}">Создать заказ</a></li>
+                  <li><a href="{% url 'adverts:addbanner' 0 %}">Создать заказ</a></li>
                   <li><a href="">Найти исполнителя</a></li>
                 </ul>
               </div>

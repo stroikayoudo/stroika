@@ -1,56 +1,66 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+<div class="container" style="margin-top:20px;">
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div>
+      <div class="form-group">
 
-<form method="post" enctype="multipart/form-data">
-  {% csrf_token %}
+        <div class="form-group">
+          <label>Ваша категория:</label>
+          {% if 'category3' in form.initial %}
+          <select name="category3" required id="id_category3">
+            <option value="{{form.initial.category3.id}}" selected>{{form.initial.category3}}</option>
+          </select>
+          {% else %}
+          {{form.category3}}
+          {% endif%}
+        </div>
 
-  <div class="form-group">
-     
-      <label for="{{ form.category3.id_for_label }}">Ваша категория</label>
-      {{ form.category3 }}
-  </div>
-  <div class="form-group">
-    
-      <label for="{{ form.title.id_for_label }}">Название:</label>
-      <input type="text" class="form-control" placeholder="Ваш текст" {{ form.title }}
-      
-  </div>
-  <div class="form-group">
-     
-      <label for="{{ form.description.id_for_label }}">Описание товара:</label>
-      <input type="text" class="form-control"  placeholder="Ваше описание" {{ form.description }}
-      
-  </div>
-  <div class="form-group">
- 
-      <label for="{{ form.price.id_for_label }}">Стоимость</label>
-      <input class="form-control" type="number" placeholder="Стоимость" {{ form.price }}
-      
-      
-  </div>
-  <div class="form-group">
-   
-    <label for="{{ for.amount.id_for_label }}">Количество</label>
-    <input class="form-control" type="number" placeholder="Кол-во" {{ form.amount }}
-      
+      </div>
 
-  </div>
-  <div class="form-group">
-  
-    <label for="{{ form.addition.id_for_label }}">Дополнительная информация</label>
-    <input class="form-control" type="text" placeholder=" " {{ form.addition }}
-    
-  </div>
-  <div class="form-group">
-  
-    <label for="{{ form.image.id_for_label }}">Вставьте изображение</label>
-    <input type="file" class="form-control-file" id="exampleFormControlFile1" {{ form.image }}
-  </div>
-  <div class="row justify-content-center">
-    <input  type="submit" value="Разместить объявление">
-  </div>
-</form>
+
+      <div class="form-group">
+        <label for="id_title">Наименование:</label>
+        <input class="form-control" type="text" name="title" maxlength="150" required id="id_title">
+      </div>
+
+      <div class="form-group">
+        <label for="id_description">Описание:</label>
+        <textarea class="form-control" name="description" cols="40" rows="10" required id="id_description"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="id_price">Цена:</label>
+
+        <input type="number" class="form-control" name="price" required id="id_price">
+      </div>
+
+      <div class="form-group">
+        <label for="id_amount">Количество:</label>
+
+        <input type="number" name="amount" class="form-control" required id="id_amount">
+      </div>
+
+      <div class="form-group">
+        <label for="id_addition">Дополнительная информация:</label>
+
+        <textarea class="form-control" name="addition" cols="40" rows="10" required id="id_addition"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="id_image">Изображение:</label>
+        <input type="file" class="form-control-file" name="image" accept="image/*" required id="id_image">
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <input type="submit" value="Разместить объявление">
+    </div>
+
+  </form>
+</div>
 
 
 {% endblock %}
