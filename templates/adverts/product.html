@@ -24,7 +24,7 @@
     </div>
   </div>
 
-  <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>
+  <script src="https://www.paypal.com/sdk/js?client-id=AdxRUsdmIcZecQ6pozocmZYcvz5oLd6o3uuBLVIo_K26E849UHZiNDCdScakCXbK6lkmCc7XgYI331Ww&currency=USD"></script>
 
   <script>
 
@@ -44,11 +44,10 @@
 		    return cookieValue;
 		}
 		var csrftoken = getCookie('csrftoken');
-
-	 	var total = {{price}}
-	 	var productId = {{prodId}}
-	 	var selected = document.getElementById('id_category');
-	 	var categoryId = '1'
+	 	var total = '{{price}}';
+	 	var sel = document.getElementById('id_category');
+	 	var productId = '{{prodId}}';
+	 	var userId = '{{user.id}}';
 
 	 	function completeOrder(){
 	 		var url = "{% url 'adverts:complete' %}"
@@ -59,7 +58,7 @@
 	 				'Content-type':'application/json',
 	 				'X-CSRFToken':csrftoken,
 	 			},
-	 			body:JSON.stringify({'productId':productId, 'categoryId':categoryId, 'selected':selected})
+	 			body:JSON.stringify({'productId':productId, 'selected':sel.value, 'userId':userId })
 	 		})
 	 	}
 
@@ -89,6 +88,8 @@
 
 
         }).render('#paypal-button-container');
+
+
 
 
   </script>

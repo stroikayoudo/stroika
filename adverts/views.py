@@ -7,6 +7,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from .models import Category3, Category2, Category1, Banner, Product1, Product2, Product3
 from .permissions import FollowerPermissionMixin
 from .forms import AddBannerForm, Product1Form, Product2Form, Product3Form
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 import json
 
@@ -84,6 +86,13 @@ def products(request):
     return render(request, 'adverts/products.html')
 
 
+class ProductListView(generic.base.View):
+
+    def get(self, request):
+        return render(request, 'adverts/mybanners.html')
+
+
+@login_required
 def product(request, pk):
     if pk == 1:
         form = Product1Form
@@ -98,11 +107,22 @@ def product(request, pk):
         return Http404("Product does not exist")
     return render(request,
                   'adverts/product.html',
-                  context={'form': form, 'price': price, 'prodId': price})
+                  context={'form': form, 'price': price, 'prodId': pk})
 
 
 def paymentComplete(request):
     body = json.loads(request.body)
-    print('BODY:', body)
+
+    pk = int(body['selected'])
+    if body['productId'] == '1':
+        category = get_object_or_404(Category1, pk=pk)
+    elif body['productId'] == '2':
+        category = get_object_or_404(Category2, pk=pk)
+    elif body['productId'] == '3':
+        category = get_object_or_404(Category3, pk=pk)
+    else:
+        return Http404("Payment doesn't exist")
+
+    category.members.add(User.objects.get(id=int(body['userId'])))
 
     return JsonResponse('Payment completed!', safe=False)
