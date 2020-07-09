@@ -1,13 +1,14 @@
-from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
-from .models import Category3, Category2, Category1, Banner
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from .permissions import FollowerPermissionMixin
-from .forms import AddBannerForm
-from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.shortcuts import render, get_object_or_404, redirect
 from django.core.mail import send_mail, send_mass_mail
-from walletone.models import WalletOneSuccessPayment
+from django.http import HttpResponseRedirect, JsonResponse, Http404
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from .models import Category3, Category2, Category1, Banner, Product1, Product2, Product3
+from .permissions import FollowerPermissionMixin
+from .forms import AddBannerForm, Product1Form, Product2Form, Product3Form
+
+import json
 
 
 class MainListView(generic.ListView):
@@ -77,3 +78,31 @@ def leave_answer(request, banner_id):
                                               banner.category3.parent_category.id,
                                               banner.category3.id,
                                               banner.id)))
+
+
+def products(request):
+    return render(request, 'adverts/products.html')
+
+
+def product(request, pk):
+    if pk == 1:
+        form = Product1Form
+        price = '20'
+    elif pk == 2:
+        form = Product2Form
+        price = '30'
+    elif pk == 3:
+        form = Product3Form
+        price = '40'
+    else:
+        return Http404("Product does not exist")
+    return render(request,
+                  'adverts/product.html',
+                  context={'form': form, 'price': price, 'prodId': price})
+
+
+def paymentComplete(request):
+    body = json.loads(request.body)
+    print('BODY:', body)
+
+    return JsonResponse('Payment completed!', safe=False)

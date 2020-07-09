@@ -10,23 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
-import os
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'jez5cyams7)+-pbxj6j4s!z20&py^kvrc!rk0*vv(ha&99w&&s'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
-# Application definition
+try:
+    from .local_settings import *
+except ImportError:
+    from .production_settings import *
 
 INSTALLED_APPS = [
     'adverts.apps.AdvertsConfig',
@@ -123,9 +110,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_DIR = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [STATIC_DIR]
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 MEDIA_URL = '/media/'
@@ -138,27 +122,7 @@ LOGIN_REDIRECT_URL = "/"
 CKEDITOR_UPLOAD_PATH = "uploads/"
 SITE_ID = 1
 
-# Online store ID (account number)
-# received at registration
-DJANGO_W1_MERCHANT_ID = '151925246675'
 
-# EDS creation method
-DJANGO_W1_SIGN_METHOD = 'md5'
-
-# Secret key from your W1 account
-DJANGO_W1_SECRET_KEY = 'sekret key'
-
-# Online store web-pages addresses (URL),
-# where buyer will be directed after successful
-# or unsuccessful payment.
-DJANGO_W1_SUCCESS_URL = 'https://127.0.0.1:8000/payment/success/'
-DJANGO_W1_FAIL_URL = 'https://127.0.0.1:8000/payment/fail/'
-
-# Currency ID (ISO 4217)
-# 643 — Russian Rubles
-# 840 — US Dollar
-# 978 — Euro
-DJANGO_W1_CURRENCY_DEFAULT = '398'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST_USER = 'artemovanvar@gmail.com'

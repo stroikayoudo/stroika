@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+
+<main role="main">
+
+  <form action="{{ form.action_url }}" method="POST" accept-charset="UTF-8">
+    <p>{{ form.as_p }}</p>
+    <p><input type="submit" value="Buy"></p>
+  </form>
+
+
+</main>
+
+
+{% endblock %}

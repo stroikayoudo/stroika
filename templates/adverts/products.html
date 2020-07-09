@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+
+<main role="main">
+
+  <a href="{% url 'adverts:product' 1%}">Category1</a>
+  <a href="{% url 'adverts:product' 2%}">Category2</a>
+  <a href="{% url 'adverts:product' 3%}">Category3</a>
+
+
+</main>
+
+
+{% endblock %}

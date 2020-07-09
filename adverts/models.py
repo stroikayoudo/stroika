@@ -94,3 +94,45 @@ class Answer(models.Model):
     class Meta:
         verbose_name = "Отклик"
         verbose_name_plural = "Отклик"
+
+
+class Product1(models.Model):
+    buyer = models.ForeignKey(User, related_name='myproducts1', on_delete=models.CASCADE, null=True)
+    category = models.ForeignKey(Category1, on_delete=models.CASCADE, related_name='products')
+    time = models.DateTimeField('Дата публикации', default=timezone.now)
+    checked_out = models.BooleanField('Оплачено', default=False)
+
+    def __str__(self):
+        return self.buyer.username + ' ' + self.category
+
+    class Meta:
+        verbose_name = "Подписка на категорию 1"
+        verbose_name_plural = "Подписки на категорию 1"
+
+
+class Product2(models.Model):
+    buyer = models.ForeignKey(User, related_name='myproducts2', on_delete=models.CASCADE, null=True)
+    category = models.ForeignKey(Category2, on_delete=models.CASCADE, related_name='products')
+    time = models.DateTimeField('Дата публикации', default=timezone.now)
+    checked_out = models.BooleanField('Оплачено', default=False)
+
+    def __str__(self):
+        return self.buyer.username + ' ' + self.category
+
+    class Meta:
+        verbose_name = "Подписка на категорию 2"
+        verbose_name_plural = "Подписки на категорию 2"
+
+
+class Product3(models.Model):
+    buyer = models.ForeignKey(User, related_name='myproducts3', on_delete=models.CASCADE, null=True)
+    category = models.ForeignKey(Category3, on_delete=models.CASCADE, related_name='products')
+    time = models.DateTimeField('Дата публикации', default=timezone.now)
+    checked_out = models.BooleanField('Оплачено', default=False)
+
+    def __str__(self):
+        return self.buyer.username + ' ' + self.category
+
+    class Meta:
+        verbose_name = "Подписка на категорию 3"
+        verbose_name_plural = "Подписки на категорию 3"
