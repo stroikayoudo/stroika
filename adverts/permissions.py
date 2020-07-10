@@ -1,10 +1,11 @@
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
+from django.urls import reverse
 
 
 class FollowerPermissionMixin:
     def dispatch(self, request, *args, **kwargs):
         if not self.has_permissions():
-            raise Http404()
+            return HttpResponseRedirect(reverse('adverts:products',))
         return super().dispatch(request, *args, **kwargs)
 
     def has_permissions(self):

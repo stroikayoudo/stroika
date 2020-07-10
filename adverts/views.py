@@ -12,7 +12,6 @@ from django.contrib.auth.models import User
 
 import json
 
-
 class MainListView(generic.ListView):
     model = Category1
     template_name = 'adverts/main.html'
