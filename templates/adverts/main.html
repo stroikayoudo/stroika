@@ -16,12 +16,21 @@
             <div class="d-flex justify-content-between align-items-center">
               <a class="list-group-item list-group-item-action"
                  href="{% url 'adverts:detail' category1.id %}"
-                 style="text-decoration:none; color: #000000;">{{ category1.name }}</a>
+                 style="text-decoration:none; color: #000000;font-size: 20px;">{{ category1.name }}</a>
             </div>
-            <a class="btn btn-primary" href="#" role="button">Подписаться на эту категорию</a>
+            
           </div>
         </div>
         {% endfor %}
+        <div class="col-12">
+          <div class="list-group mb-4 shadow-sm ">
+            
+              <div class="d-flex justify-content-between align-items-center">
+                <a class="list-group-item list-group-item-action bg-primary" href="{% url 'adverts:product' 1%}" style="text-decoration:none;text-align: center; color: #ffffff;font-size: 20px;"><h4>Для подписки на категорию первого уровня, нажмите сюда  </h4></a>
+              </div>
+              
+            </div>
+          </div>
       </div>
     </div>
   </div>

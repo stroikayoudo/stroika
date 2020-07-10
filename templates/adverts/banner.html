@@ -22,25 +22,25 @@
         <p><img src="{{ banner.image.url }}" class="img-fluid" alt=""></p>
       </div>
     </div>
-    <br>
+    <br><hr>
     <div class="form-group">
       <div class="row">
-        Описание: {{banner.description}}
+        <h3>Описание: {{banner.description}}</h3>
       </div>
     </div>
     <div class="form-group">
       <div class="row">
-        Автор: {{banner.author}}
+        <h4>Автор: {{banner.author}}</h4>
       </div>
     </div>
     <div class="form-group">
       <div class="row">
-        Стоимость: {{banner.price}} Тенге
+        <h4>Стоимость: {{banner.price}} Тенге</h4>
       </div>
     </div>
     <div class="form-group">
       <div class="row">
-        Кол-во: {{banner.amount}}
+        <h4>Кол-во: {{banner.amount}}</h4>
       </div>
     </div>
     <div class="form-group">
@@ -49,33 +49,36 @@
       </div>
     </div>
   </div>
-
-
+<br><br><br><br>
+<h3>Ответы</h3>
+<br><br><br>
   {% for answer in banner.answers.all %}
-  <hr>
-  <h2><p>{{answer}}</p></h2>
-  <p>{{answer.pub_time}}</p>
-  <p>{{answer.text}}</p>
-  <hr>
-  {% empty %}
-  <li>No Answers</li>
-  {% endfor %}
+  
+    <h2><p>{{answer}}</p></h2>
+    <hr>
+    <p>{{answer.pub_time}}</p>
+    <h3>{{answer.text}}</h3>
+    <hr><br><br><br>
+    {% empty %}
+    <li>No Answers</li>
+    <br><br><br>
+    {% endfor %}
 
-  <form action="{% url 'adverts:leave_answer' banner.id %}"
-        method="POST">
-    {% csrf_token %}
-    <p>Author: {{user.username}}</p>
-    <div class="row">
-          <textarea name="text" id="" cols="180" rows="10"></textarea>
-    </div>
-    <br>
-    <div class="row">
-      <button type="submit" class="btn btn-success">Оставить комментарий</button>
-    </div>
+    <form action="{% url 'adverts:leave_answer' banner.id %}"
+          method="POST">
+      {% csrf_token %}
+      <p>Author: {{user.username}}</p>
+      <div class="row">
+            <textarea name="text" id="" cols="180" rows="10"></textarea>
+      </div>
+      <br>
+      <div class="row">
+        <button type="submit" class="btn btn-success">Оставить комментарий</button>
+      </div>
 
 
-  </form>
-</div>
+    </form>
+  </div>
 
 
 {% endblock %}
